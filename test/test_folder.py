@@ -42,8 +42,8 @@ class Tester(unittest.TestCase):
             self.assertEqual(cls, dataset.classes[dataset.class_to_idx[cls]])
         class_a_idx = dataset.class_to_idx['a']
         class_b_idx = dataset.class_to_idx['b']
-        imgs_a = [(img_path, class_a_idx)for img_path in Tester.class_a_images if '3' in img_path ]
-        imgs_b = [(img_path, class_b_idx)for img_path in Tester.class_b_images if '3' in img_path ]
+        imgs_a = [(img_path, class_a_idx)for img_path in Tester.class_a_images if '3' in img_path]
+        imgs_b = [(img_path, class_b_idx)for img_path in Tester.class_b_images if '3' in img_path]
         imgs = sorted(imgs_a + imgs_b)
         self.assertEqual(imgs, dataset.imgs)
 

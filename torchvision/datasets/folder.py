@@ -44,14 +44,15 @@ def make_dataset(dir, class_to_idx, extensions=None, is_valid_file=None):
         d = os.path.join(dir, target)
         if not os.path.isdir(d):
             continue
-        if (extensions is not None):
-            if_valid file = lambda x: has_file_allowed_extension(x, extensions) 
+        if extensions is not None:
+            def is_valid_file(x):
+                has_file_allowed_extension(x, extensions)
         for root, _, fnames in sorted(os.walk(d)):
-                for fname in sorted(fnames):
-                    path = os.path.join(root, fname)
-                    if is_valid_file(path):
-                        item = (path, class_to_idx[target])
-                        images.append(item)
+            for fname in sorted(fnames):
+                path = os.path.join(root, fname)
+                if is_valid_file(path):
+                    item = (path, class_to_idx[target])
+                    images.append(item)
 
     return images
 
@@ -206,7 +207,7 @@ class ImageFolder(DatasetFolder):
     def __init__(self, root, transform=None, target_transform=None,
                  loader=default_loader, is_valid_file=None):
         super(ImageFolder, self).__init__(root, loader, IMG_EXTENSIONS if is_valid_file is None else None,
-                                              transform=transform,
-                                              target_transform=target_transform,
-                                              is_valid_file=is_valid_file)
+                                          transform=transform,
+                                          target_transform=target_transform,
+                                          is_valid_file=is_valid_file)
         self.imgs = self.samples
