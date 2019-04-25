@@ -46,7 +46,7 @@ def make_dataset(dir, class_to_idx, extensions=None, is_valid_file=None):
             continue
         if extensions is not None:
             def is_valid_file(x):
-                has_file_allowed_extension(x, extensions)
+                return has_file_allowed_extension(x, extensions)
         for root, _, fnames in sorted(os.walk(d)):
             for fname in sorted(fnames):
                 path = os.path.join(root, fname)
